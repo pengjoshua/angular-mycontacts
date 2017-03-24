@@ -1,14 +1,20 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('myContacts', [
   'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
+  'firebase',
+  'myContacts.contacts'
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
-
-  $routeProvider.otherwise({redirectTo: '/view1'});
+config(['$routeProvider', function($routeProvider) {
+  $routeProvider.otherwise({redirectTo: '/contacts'});
+  // Initialize Firebase
+  let config = {
+    apiKey: "AIzaSyD6MKN3ROwCpUdbqtBbHCKBwqcRjMLtdx8",
+    authDomain: "mycontacts-6a99d.firebaseapp.com",
+    databaseURL: "https://mycontacts-6a99d.firebaseio.com",
+    storageBucket: "mycontacts-6a99d.appspot.com",
+    messagingSenderId: "486354792943"
+  };
+  firebase.initializeApp(config);
 }]);
